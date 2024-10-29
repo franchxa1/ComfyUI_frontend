@@ -429,3 +429,26 @@ Run following command to publish a release to ComfyUI main repo. The script will
 from GitHub release.
 
 - `python scripts/main_repo_release.py <path_to_comfyui_main_repo> <version>`
+
+## Integrating with Visual Studio Code
+
+To integrate this project with Visual Studio Code, follow these steps:
+
+1. Install Visual Studio Code from the official website if you haven't already.
+2. Open Visual Studio Code.
+3. Use the terminal in Visual Studio Code to navigate to the root directory of this project.
+4. Run `npm install` to install the necessary dependencies as specified in the `package.json` file.
+5. Create a `.env` file based on the `.env_example` file and configure it as needed.
+6. Install the recommended extensions for Visual Studio Code by opening the command palette (Ctrl+Shift+P) and selecting "Extensions: Show Recommended Extensions". This will include extensions for Vue, TypeScript, ESLint, and Prettier.
+7. Configure the project settings in Visual Studio Code by creating a `.vscode/settings.json` file with the following content:
+   ```json
+   {
+     "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+     "editor.formatOnSave": true,
+     "editor.codeActionsOnSave": {
+       "source.fixAll.eslint": true
+     }
+   }
+   ```
+8. Set up the pre-commit hooks by running `npm run prepare` as mentioned in the `README.md` file.
+9. Start the development server by running `npm run dev` to ensure everything is set up correctly.

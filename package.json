@@ -15,7 +15,7 @@
     "test:generate": "npx tsx tests-ui/setup",
     "test:browser": "npx playwright test",
     "test:component": "vitest run src/components/",
-    "prepare": "husky || true",
+    "prepare": "husky install",
     "preview": "vite preview",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
@@ -80,12 +80,29 @@
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.4.3",
     "zod": "^3.23.8",
-    "zod-validation-error": "^3.3.0"
+    "zod-validation-error": "^3.3.0",
+    "vscode": "^1.1.37"
   },
   "lint-staged": {
     "./**/*.{js,ts,tsx,vue}": [
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "comfyui-frontend.openComfyUI",
+        "title": "Open ComfyUI Frontend"
+      },
+      {
+        "command": "comfyui-frontend.refreshNodeDefinitions",
+        "title": "Refresh Node Definitions"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onCommand:comfyui-frontend.openComfyUI",
+    "onCommand:comfyui-frontend.refreshNodeDefinitions"
+  ]
 }

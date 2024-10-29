@@ -1,4 +1,3 @@
-// @ts-strict-ignore
 import { ComfyLogging } from './logging'
 import { ComfyWidgetConstructor, ComfyWidgets, initWidgets } from './widgets'
 import { ComfyUI, $el } from './ui'
@@ -3027,6 +3026,28 @@ export class ComfyApp {
     const graphNode = this.graph.getNodeById(nodeId)
     if (!graphNode) return
     this.canvas.centerOnNode(graphNode)
+  }
+
+  /**
+   * Controls different layout views from the editor.
+   * @param {string} view - The view to switch to.
+   */
+  controlLayoutView(view: string) {
+    switch (view) {
+      case 'default':
+        this.resetView();
+        break;
+      case 'zoomIn':
+        this.canvas.ds.changeScale(this.canvas.ds.scale * 1.1);
+        this.graph.setDirtyCanvas(true, true);
+        break;
+      case 'zoomOut':
+        this.canvas.ds.changeScale(this.canvas.ds.scale / 1.1);
+        this.graph.setDirtyCanvas(true, true);
+        break;
+      default:
+        console.warn(`Unknown view: ${view}`);
+    }
   }
 }
 
