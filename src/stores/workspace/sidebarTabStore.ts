@@ -59,6 +59,14 @@ export const useSidebarTabStore = defineStore('sidebarTab', () => {
     registerSidebarTab(useWorkflowsSidebarTab())
   }
 
+  // Listen for messages from Visual Studio Code
+  window.addEventListener('message', (event) => {
+    const message = event.data
+    if (message.command === 'toggleSidebarTab') {
+      toggleSidebarTab(message.tabId)
+    }
+  })
+
   return {
     sidebarTabs,
     activeSidebarTabId,

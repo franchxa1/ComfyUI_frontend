@@ -201,4 +201,24 @@ onMounted(async () => {
 
   emit('ready')
 })
+
+// Handle opening and displaying ComfyUI workflow files in the main window
+const openComfyUIWorkflowFile = async (file) => {
+  const reader = new FileReader()
+  reader.onload = async () => {
+    const readerResult = reader.result as string
+    const jsonContent = JSON.parse(readerResult)
+    await comfyApp.loadGraphData(jsonContent, true, true, file.name)
+  }
+  reader.readAsText(file)
+}
+
+// Listen for messages from Visual Studio Code
+window.addEventListener('message', async (event) => {
+  const message = event.data
+  if (message.command === 'openComfyUIWorkflowFile') {
+    const file = message.file
+    await openComfyUIWorkflowFile(file)
+  }
+})
 </script>

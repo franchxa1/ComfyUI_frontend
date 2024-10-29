@@ -192,4 +192,18 @@ const onRemoveFilter = (filterAndValue) => {
   }
   handleSearch(searchQuery.value)
 }
+
+// Listen for messages from Visual Studio Code
+window.addEventListener('message', (event) => {
+  const message = event.data
+  if (message.command === 'toggleNodeLibrarySidebarTab') {
+    const tabId = 'nodeLibrary'
+    const isActive = sidebarTab.value.activeSidebarTabId === tabId
+    sidebarTab.value.toggleSidebarTab(tabId)
+    if (!isActive) {
+      // Ensure the tab is expanded when activated
+      expandNode(renderedRoot.value)
+    }
+  }
+})
 </script>

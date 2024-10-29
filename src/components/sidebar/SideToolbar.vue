@@ -30,7 +30,7 @@ import SidebarIcon from './SidebarIcon.vue'
 import SidebarThemeToggleIcon from './SidebarThemeToggleIcon.vue'
 import SidebarSettingsToggleIcon from './SidebarSettingsToggleIcon.vue'
 import ExtensionSlot from '@/components/common/ExtensionSlot.vue'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useWorkspaceStore } from '@/stores/workspaceStateStore'
 import { useSettingStore } from '@/stores/settingStore'
 import type { SidebarTabExtension } from '@/types/extensionTypes'
@@ -61,6 +61,16 @@ const getTabTooltipSuffix = (tab: SidebarTabExtension) => {
   )
   return keybinding ? ` (${keybinding.combo.toString()})` : ''
 }
+
+// Listen for messages from Visual Studio Code
+onMounted(() => {
+  window.addEventListener('message', (event) => {
+    const message = event.data
+    if (message.command === 'toggleSidebarTab') {
+      workspaceStore.sidebarTab.toggleSidebarTab(message.tabId)
+    }
+  })
+})
 </script>
 
 <style>
