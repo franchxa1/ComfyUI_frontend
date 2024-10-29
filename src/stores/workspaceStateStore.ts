@@ -49,6 +49,14 @@ export const useWorkspaceStore = defineStore('workspace', () => {
     return sidebarTab.value.sidebarTabs
   }
 
+  // Listen for messages from Visual Studio Code
+  window.addEventListener('message', (event) => {
+    const message = event.data
+    if (message.command === 'toggleSidebarTab') {
+      sidebarTab.value.toggleSidebarTab(message.tabId)
+    }
+  })
+
   return {
     spinner,
     shiftDown,
