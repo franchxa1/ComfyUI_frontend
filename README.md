@@ -452,3 +452,28 @@ To integrate this project with Visual Studio Code, follow these steps:
    ```
 8. Set up the pre-commit hooks by running `npm run prepare` as mentioned in the `README.md` file.
 9. Start the development server by running `npm run dev` to ensure everything is set up correctly.
+
+## Progress Update
+
+### Current Progress
+
+The project is progressing well. We have completed several key tasks and are currently working on others.
+
+### Completed Tasks
+
+- Initial setup of the project
+- Implementation of the core UI components
+- Integration with the ComfyUI backend
+- Basic unit and component tests
+
+### Tasks in Progress
+
+- Enhancing the node editor with additional features
+- Improving the performance of the application
+- Adding more comprehensive tests
+
+### Planned Tasks
+
+- Implementing user authentication and authorization
+- Adding support for more complex workflows
+- Enhancing the documentation and user guides
